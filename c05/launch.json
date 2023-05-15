@@ -14,7 +14,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "debug_js2",
-            "url": "http://127.0.0.1:5500/c05/inner-text-and-text-content.html",
+            "url": "http://127.0.0.1:5500/c6/inner-text-and-text-content.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
