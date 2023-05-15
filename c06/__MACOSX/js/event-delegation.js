@@ -1,4 +1,6 @@
 document.getElementById('shoppingList').addEventListener('click', function(event){
-   let target = event.target;
-   let currentTarget = event.currentTarget;
+   event.preventDefault();
+    let liElement = event.target.parentNode;
+   let ulElement = event.currentTarget;
+   ulElement.removeChild(liElement);
 });
