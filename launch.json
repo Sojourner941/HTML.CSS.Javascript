@@ -1,0 +1,18 @@
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "debug_js1",
+            "url": "http://127.0.0.1:5500/c05/inner-text-and-text-content.html",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "debug_js2",
+            "url": "http://127.0.0.1:5500/c05/inner-text-and-text-content.html",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
