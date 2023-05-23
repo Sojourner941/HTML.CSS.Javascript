@@ -6,7 +6,6 @@ table{
 }
 
 .overlay{
-    opacity:0.8;
     background-color:#ccc;
     position:fixed;
     width:100%;
@@ -18,4 +17,9 @@ table{
 
 .close{
     display:none
+}
+
+#showMap{
+    height: 600px;
+    width: 100%;
 }
