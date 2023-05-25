@@ -1,11 +1,14 @@
+/*手機直的*/
 #container{
     display: grid;
-    grid-template-columns: 200px 1fr;
-    grid-template-rows: 8em 500px 8em;
+    grid-template-columns: 1fr;
+    grid-template-rows: 8em auto auto 8em;
     grid-template-areas: 
-    "header header"
-    "nav main"
-    "footer footer";
+    "header"
+    "nav"
+    "main"
+    "footer";
+    width:100%
 }
 .header{
     display: flex;
@@ -14,16 +17,13 @@
     justify-content: center;
     align-items: center;
     background-color: azure;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    grid-area: header;
+
 }
 
 .nav{
     background-color: aqua;
-    grid-row: 2 / 3;
-    grid-column: 1 / span 1;
+    grid-area:nav;
 }
 
 .nav ul{
@@ -43,8 +43,8 @@
 
 .main{
     background-color: beige;
-    grid-row: 2 / 3;
-    grid-column:2 / 3;
+    grid-area: main;
+
 }
 
 .footer{
@@ -57,13 +57,85 @@
     grid-area:footer;
 }
 
-
+/*手機橫的*/
 @media (min-width: 576px){   }
 
-@media (min-width: 768px){   }
+/*平板*/
+@media (min-width: 768px){ 
+    #container{
+        display:grid;
+        grid-template-columns: 200px 1fr;
+        grid-template-rows: 8em auto 8em;
+        grid-template-areas:
+        "header header"
+        "nav main"
+        "footer footer";
+    }
+    .header{    
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content:center;
+        align-items: center;
+        background-color: azure;
+        grid-row-start:1;
+        grid-row-end: 2;
+        grid-column-start: 1;
+        grid-column-end:3;
+    }
+    
+    .nav{
+        background-color: aqua;
+        grid-row: 2 / 3;
+        grid-column: 1 / span 1;
+    }
+    
+    .nav ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .nav a{
+        display: block;
+        padding: 1em;
+        text-decoration: none;
+        text-align: center;
+        color: black;
+        font-weight: bold;
+    }
+    
+    .main{
+        background-color: beige;
+        grid-row: 2 / 3;
+        grid-column:2 / 3;
+    }
+    
+    .footer{
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content:center;
+        align-items: center;
+        background-color: aquamarine;
+        grid-area:footer;
+    }
+    
+}
 
+/*筆電*/
 @media (min-width: 992px){   }
 
-@media (min-width: 1200px){    }
-
-@media (min-width: 1400px){    }
+/*桌機*/
+@media (min-width: 1200px){ 
+    #container{
+        width: 1140px;
+        margin:0 auto;
+    }
+}
+/*電競*/
+@media (min-width: 1400px){
+    #container{
+        width: 1320px;
+    }
+}

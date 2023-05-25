@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>產品</title>
-  <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/index.css">
   <script src="js/index.js" type="module"></script>
 </head>
@@ -21,7 +21,25 @@
         <li><a href="#">產品導覽</a></li>
       </ul>
     </nav>
-     <main class="main">Main</main>
+     <main class="main">      
+      <form>
+      <div class="mb-3">
+        <label for="InputName" class="form-label">產品名稱</label>
+        <input type="text" class="form-control" id="InputName" aria-describedby="nameHelp">
+        <div id="nameHelp" class="form-text">產品名稱要詳細</div>
+      </div>
+      <div class="mb-3">
+        <label for="InputCode1" class="form-label">產品編號</label>
+        <input type="text" class="form-control" id="InputCode1"aria-describedby="codeHelp">
+        <div id="codeHelp" class="form-text">xxx-xxx-xxx</div>
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </main>
      <footer class="footer">
     <h1>Footer</h1>
   </footer>
