@@ -1,6 +1,41 @@
-let formElement = document.querySelector('#form')
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js'
 
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyC0AO8-o_0FoVZgLfVs31UvYm1Gm-fL6lI",
+    authDomain: "project-javascript-4e903.firebaseapp.com",
+    databaseURL: "https://project-javascript-4e903-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "project-javascript-4e903",
+    storageBucket: "project-javascript-4e903.appspot.com",
+    messagingSenderId: "785523512113",
+    appId: "1:785523512113:web:675e257b7b759e00b6d610"
+};
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+let formElement = document.querySelector('#form')
 let allOfDataArray = [];
+//setup現在的日期
+
+const setup現在的日期 = () =>{
+    let current = new Date()
+    let year = current.getFullYear()
+    let month = current.getMonth()+1
+    let date = current.getDate()
+    
+    
+    let month_string = String(month).padStart(2,"0")
+    let date_string = String(date).padStart(2,"0")
+    let current_date_string = `${year}-${month_string}-${date_string}`
+
+    let dateElement = document.querySelector('#warrantyDate')
+    dateElement.value = current_date_string
+    dateElement.min =current_date_string
+}
+
+setup現在的日期 ()
 
 const validateName = ()=>{
     let inputNameElement = document.querySelector('#inputName')
@@ -18,7 +53,7 @@ const validateCodeFormat = () =>{
     let inputCodeElement = document.querySelector('#inputCode')
     let codeAlertElement = document.querySelector('#codeAlert')
     let inputCodeValue = inputCodeElement.value
-
+    
     //正規則表達式
     const codePatternReg = /\w\w\w-\w\w\w-\w\w\w/g
 
@@ -32,10 +67,31 @@ const validateCodeFormat = () =>{
 }
 
 const checkRadioValue = () => {
-    let radioElements = document.querySelectorAll('.form-check-label')
-    radioElements.forEachelement (element=> {})
+    let radionElements = document.querySelectorAll('.form-check-input')
+    radionElements.forEach(element => {
+        if(element.checked){
+            //console.log(element.value)
+            allOfDataArray.push({'catgory':element.value})
+        }
+    })
+}
+
+const warrantyCheck = () =>{
+    let checkboxElement = document.querySelector('#warrantyCheck1')
+    if (checkboxElement.checked){
+        allOfDataArray.push({'warranty':true})
+    }else{
+            allOfDataArray.push({'warranty':false})
+        }
+    }
+
+    const getWarrantyDate = () => {
+        let dateElement = document.querySelector('#warrantyDate')
+        allOfDataArray.push({'warrantyDate':dateElement.value})
+    }
 
 const clearAllAlertAndData = ()=>{
+
     //清除產品警告
     let nameAlertElement = document.querySelector('#nameAlert')
     nameAlertElement.classList.add("close")
@@ -48,10 +104,29 @@ const clearAllAlertAndData = ()=>{
     allOfDataArray = []
 }
 
+const setEmpty = () => {
+    let inputNameElement = document.querySelector('#inputName')
+    inputNameElement.value = ""
+    let inputCodeElement = document.querySelector('#inputCode')
+    inputCodeElement.value = ""
+    let radionElements = document.querySelectorAll
+    ('.form-check-input')
+    radionElements.checked = true
+    let checkboxElement = document.querySelector
+    ('#warrantyCheck1')
+    checkboxElement.checked = false
+    setup現在的日期 ()
+
+}
+
 formElement.addEventListener('submit',(event)=>{
     clearAllAlertAndData()
     event.preventDefault()
     validateName()
     validateCodeFormat()
+    checkRadioValue()
+    warrantyCheck()
+    getWarrantyDate()
     console.log(allOfDataArray)
+    setEmpty()
 })
