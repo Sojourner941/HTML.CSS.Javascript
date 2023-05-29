@@ -121,6 +121,10 @@
         grid-area:footer;
     }
     
+    form .alert{
+        color: red;
+        font-size: 0.8em;
+    }
 }
 
 /*筆電*/

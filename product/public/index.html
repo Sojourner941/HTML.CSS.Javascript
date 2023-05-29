@@ -22,16 +22,18 @@
       </ul>
     </nav>
     <main class="main">
-      <form>
+      <form id="form" method="post" action="">
         <div class="mb-3">
           <label for="inputName" class="form-label">產品名稱</label>
           <input type="text" class="form-control" id="inputName" aria-describedby="nameHelp">
-          <div id="nameHelp" class="form-text">產品名稱要祥細</div>
+          <div id="nameHelp" class="form-text">產品名稱要詳細</div>
+          <p id='nameAlert' class="alert close">*產品名稱一定要填寫</p>
         </div>
         <div class="mb-3">
-          <label for="InputCode1" class="form-label">產品編號</label>
-          <input type="text" class="form-control" id="InputCode1" aria-describedby="codeHelp">
+          <label for="InputCode" class="form-label">產品編號</label>
+          <input type="text" class="form-control" id="inputCode" aria-describedby="codeHelp">
           <div id="codeHelp" class="form-text">xxx-xxx-xxx</div>
+          <p id="codeAlert" class="alert close">*格式不符合</p>
         </div>
         
         <p>類別</p>
@@ -52,8 +54,16 @@
         <p style="margin-top:5em;">保固需求</p>
         <div class="mb-3 form-check">
           <input type="checkbox" class="form-check-input" id="warrantyCheck1">
-          <label class="form-check-label" for="warrantyCheck1">必需保固</label>
+          <label class="form-check-label1" for="warrantyCheck1">保固</label>
         </div>
+
+      
+        <div class="mb-3 form-check" style="margin-top:5em;">
+          <label class="form-check-label1" for="warrantyDate">保存期限</label>
+          <input type="date" class="form-check-input" id="warrantyDate">          
+        </div>
+
+        <button type="submit" class="btn btn-primary">送出</button>
         
       </form>
     </main>
