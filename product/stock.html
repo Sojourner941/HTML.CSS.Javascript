@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>產品</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js" type="module">
+
+        fetch(new Request('codeSearch.json'))
+            .then((Response) => {
+                return Response.json()
+            }).then((r) => {
+                console.log(r)
+            })
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <header class="header">
+            <h1>股價查詢</h1>
+        </header>
+        <nav class="nav">
+            <ul>
+                <li><a href="#">產品輸入</a></li>
+                <li><a href="#">產品更新</a></li>
+                <li><a href="#">產品導覽</a></li>
+            </ul>
+        </nav>
+        <main class="main">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>請選取股票名稱</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+        </main>
+        <footer class="footer">
+            <h1>Footer</h1>
+        </footer>
+    </div>
+</body>
+
+</html>
