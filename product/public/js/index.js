@@ -1,22 +1,21 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js'
 
-import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
+import { getFirestore, addDoc, collection } from 'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore.js'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC0AO8-o_0FoVZgLfVs31UvYm1Gm-fL6lI",
-    authDomain: "project-javascript-4e903.firebaseapp.com",
-    databaseURL: "https://project-javascript-4e903-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "project-javascript-4e903",
-    storageBucket: "project-javascript-4e903.appspot.com",
-    messagingSenderId: "785523512113",
-    appId: "1:785523512113:web:675e257b7b759e00b6d610"
-};
+    apiKey: "AIzaSyDPs7LLLqnWt2vXHnfrBusqBghADIZ8Ulk",
+    authDomain: "project-javascript-c5b88.firebaseapp.com",
+    projectId: "project-javascript-c5b88",
+    storageBucket: "project-javascript-c5b88.appspot.com",
+    messagingSenderId: "576242580627",
+    appId: "1:576242580627:web:e7bad93326a052658ee166"
+  };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
 let formElement = document.querySelector('#form')
-let allOfDataArray = [];
+let allOfDataObject = {};
 //setup現在的日期
 
 const setup現在的日期 = () =>{
@@ -46,8 +45,10 @@ const validateName = ()=>{
         nameAlertElement.classList.remove("close")
         return
     }
-    allOfDataArray.push({'productName':productName})
+    //allOfDataArray.push({'productName':productName})
+    allOfDataObject['productName'] = productName
 }
+
 
 const validateCodeFormat = () =>{
     let inputCodeElement = document.querySelector('#inputCode')
@@ -63,7 +64,8 @@ const validateCodeFormat = () =>{
         console.log("執行錯誤")
         return
     }
-    allOfDataArray.push({'code':inputCodeValue})
+    //allOfDataArray.push({'code':inputCodeValue})
+    allOfDataObject['code'] = inputCodeValue
 }
 
 const checkRadioValue = () => {
@@ -71,7 +73,8 @@ const checkRadioValue = () => {
     radionElements.forEach(element => {
         if(element.checked){
             //console.log(element.value)
-            allOfDataArray.push({'catgory':element.value})
+           // allOfDataArray.push({'catgory':element.value})
+           allOfDataObject['category'] = element.value
         }
     })
 }
@@ -79,15 +82,17 @@ const checkRadioValue = () => {
 const warrantyCheck = () =>{
     let checkboxElement = document.querySelector('#warrantyCheck1')
     if (checkboxElement.checked){
-        allOfDataArray.push({'warranty':true})
+        //allOfDataObject.push({'warranty':true})
+        allOfDataObject ['warranty']= true
     }else{
-            allOfDataArray.push({'warranty':false})
+        allOfDataObject ['warranty']= false
         }
     }
 
     const getWarrantyDate = () => {
         let dateElement = document.querySelector('#warrantyDate')
-        allOfDataArray.push({'warrantyDate':dateElement.value})
+        //allOfDataArray.push({'warrantyDate':dateElement.value})
+        allOfDataObject['warrantyDate'] = dateElement.value
     }
 
 const clearAllAlertAndData = ()=>{
@@ -101,7 +106,7 @@ const clearAllAlertAndData = ()=>{
     codeAlertElement.classList.add("close")
 
     //清除收集的資料
-    allOfDataArray = []
+    allOfDataObject = {}
 }
 
 const setEmpty = () => {
@@ -119,7 +124,7 @@ const setEmpty = () => {
 
 }
 
-formElement.addEventListener('submit',(event)=>{
+formElement.addEventListener('submit',async (event)=>{
     clearAllAlertAndData()
     event.preventDefault()
     validateName()
@@ -127,6 +132,12 @@ formElement.addEventListener('submit',(event)=>{
     checkRadioValue()
     warrantyCheck()
     getWarrantyDate()
-    console.log(allOfDataArray)
+    console.log(allOfDataObject)
+    try{
+        const docRef = await addDoc(collection(db, "products"), allOfDataObject);
+        console.log("這個文件的id是", docRef.id);
+    }catch(e){
+        console.error("加入文件的錯誤是 ", e);
+    }
     setEmpty()
 })
